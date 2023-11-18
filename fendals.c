@@ -14,6 +14,7 @@ void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int)
 	instruction_t oper[] = {
 		{"sub", sub},
 		{"mod", mod},
+		{"div", duv},
 		{"mul", mul},
 		{"pall", pall},
 		{"pint", pint},
