@@ -4,7 +4,6 @@
  * @op : operator
  * @n : line number
  * @t : pointer
- * 
  * Return : the right function
 */
 void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int)
@@ -37,7 +36,7 @@ void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int)
 /**
  * freeze - function
  * @stack : stack
- * 
+ *
  * Return : void
  */
 void freeze(stack_t *stack)
