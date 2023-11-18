@@ -1,13 +1,12 @@
 #include "monty.h"
-#include <stdio.h>
-#include <stdlib.h>
 /**
  * hndle - function
  * @op : operator
  * @n : line number
  * @t : pointer
- * Return : function
- */
+ * 
+ * Return : the right function
+*/
 void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int)
 {
 	int i;
@@ -16,7 +15,6 @@ void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int)
 		{"mod", mod},
 		{"mul", mul},
 		{"pall", pall},
-		{"print_list", print_list},
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
@@ -31,15 +29,18 @@ void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int)
 	}
 
 	fprintf(stderr, "L%u: unknown instructon %s\n", n, op);
-	fclose(file);
-	freee(*t);
+	fclose(fd);
+	freeze(*t);
 	exit(EXIT_FAILURE);
 }
+
 /**
- * freee - function
- * @line : line
+ * freeze - function
+ * @stack : stack
+ * 
+ * Return : void
  */
-void freee(stack_t *stack)
+void freeze(stack_t *stack)
 {
 	stack_t *top;
 
@@ -54,19 +55,19 @@ void freee(stack_t *stack)
 /**
  * _isint - function
  * @str :string
- * Return 0 if true , 1 if false
- */
+ * Return 0 ,otherwise 1
+*/
 int _isint(char *str)
 {
 	int i = 0;
 
 	if (str[i] == '-')
 		i++;
-
-	for (; str[i]; i++)
+	while (str[i])
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (!isdigit(str[i]))
 			return (0);
+		i++;
 	}
 	return (1);
 }

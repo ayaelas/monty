@@ -1,6 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
-#define _POSIX_C_SOURCE 200809L
+#define _GNU_SOURCE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,7 +10,8 @@
 #include <string.h>
 #include <fcntl.h>
 #include <ctype.h>
-extern FILE *file;
+
+extern FILE *fd;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -27,6 +28,7 @@ typedef struct stack_s
 	struct stack_s *prev;
 	struct stack_s *next;
 } stack_t;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -49,12 +51,15 @@ void swap(stack_t **stack, unsigned int line_number);
 
 /* opers1.c */
 void nop(stack_t **stack, unsigned int line_number);
-void print_list(stack_t **s, unsigned int line_number);
+
+
+
 int _isint(char *str);
-void freee(stack_t *stack);
-void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int);
+void freeze(stack_t *stack);
+void (*hndle(char *op, unsigned int line_number, stack_t **t))(stack_t**, unsigned int);
 
 /* maths.c */
+void duv(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);

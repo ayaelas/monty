@@ -15,21 +15,25 @@ void push(stack_t **stack, char *par, unsigned int line_number)
 	if (par == NULL || _isint(par) == 0)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		fclose(file);
-		freee(*stack);
+		fclose(fd);
+		freeze(*stack);
 		exit(EXIT_FAILURE);
 	}
 	if (!stck)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		fclose(file);
+		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
 	stck->n = atoi(par);
-	stck->next = *stack;
+	stck->next = NULL;
 	stck->prev = NULL;
 	if (*stack != NULL)
+	{
+		stck->next = *stack;
 		(*stack)->prev = stck;
+		(*stack) = stck;
+	}
 	(*stack) = stck;
 }
 /**
@@ -40,6 +44,7 @@ void push(stack_t **stack, char *par, unsigned int line_number)
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top;
+
 	(void)line_number;
 	top = (*stack);
 
@@ -59,7 +64,7 @@ void pint(stack_t **stack, unsigned int line_number)
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		fclose(file);
+		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
 	(void)line_number;
@@ -77,7 +82,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		fclose(file);
+		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
 	top = (*stack)->next;
@@ -99,8 +104,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	if (!(*stack) || !((*stack)->next))
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		fclose(file);
-		freee(*stack);
+		fclose(fd);
 		exit(EXIT_FAILURE);
 	}
 	count = (*stack)->n;
