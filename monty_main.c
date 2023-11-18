@@ -1,6 +1,6 @@
 #include "monty.h"
 
-
+FILE *fd;
 /**
  * main - function
  * @argc : argument
@@ -10,7 +10,6 @@
  */
 int main(int argc, char *argv[])
 {
-	FILE *fd;
 	void (*opr)(stack_t **stack, unsigned int line_number);
 	size_t buffer = 1024, line_count = 0;
 	ssize_t l;
