@@ -2,11 +2,12 @@
 #include <stdio.h>
 
 /**
- * hndle - function
- * @op : operator
- * @n : line number
- * @t : pointer
- * Return : the right function
+ * hndle - functions
+ * @op: operator
+ * @n: line count
+ * @t: pointer to the stack
+ *
+ * Return: the right function
 */
 void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int)
 {
@@ -56,8 +57,9 @@ void freeze(stack_t *stack)
 
 /**
  * _isint - function
- * @str :string
- * Return 0 ,otherwise 1
+ * @str: the string
+ *
+ * Return: 1 true,0 false
 */
 int _isint(char *str)
 {
