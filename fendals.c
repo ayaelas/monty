@@ -31,7 +31,7 @@ void (*hndle(char *op, unsigned int n, stack_t **t))(stack_t**, unsigned int)
 			return (oper[i].f);
 	}
 
-	fprintf(stderr, "L%u: unknown instructon %s\n", n, op);
+	fprintf(stderr, "L%u: unknown instruction %s\n", n, op);
 	fclose(fd);
 	freeze(*t);
 	exit(EXIT_FAILURE);
